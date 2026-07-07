@@ -1,0 +1,56 @@
+# random inspirational quotes
+
+import random
+
+QUOTES = [
+    ("The only way to do great work is to love what you do.", "Steve Jobs"),
+    ("Innovation distinguishes between a leader and a follower.", "Steve Jobs"),
+    ("Life is what happens when you're busy making other plans.", "John Lennon"),
+    ("The future belongs to those who believe in the beauty of their dreams.", "Eleanor Roosevelt"),
+    ("It is during our darkest moments that we must focus to see the light.", "Aristotle"),
+    ("Do not go where the path may lead, go instead where there is no path and leave a trail.", "Ralph Waldo Emerson"),
+    ("In the middle of difficulty lies opportunity.", "Albert Einstein"),
+    ("Success is not final, failure is not fatal: it is the courage to continue that counts.", "Winston Churchill"),
+    ("Believe you can and you're halfway there.", "Theodore Roosevelt"),
+    ("The best way to predict the future is to invent it.", "Alan Kay"),
+    ("Twenty years from now you will be more disappointed by the things you didn't do than by the ones you did do.", "Mark Twain"),
+    ("It always seems impossible until it's done.", "Nelson Mandela"),
+    ("You miss 100% of the shots you don't take.", "Wayne Gretzky"),
+    ("Whether you think you can or you think you can't, you're right.", "Henry Ford"),
+    ("The only limit to our realization of tomorrow is our doubts of today.", "Franklin D. Roosevelt"),
+    ("What lies behind us and what lies before us are tiny matters compared to what lies within us.", "Ralph Waldo Emerson"),
+    ("Not all those who wander are lost.", "J.R.R. Tolkien"),
+    ("The way to get started is to quit talking and begin doing.", "Walt Disney"),
+    ("Everything you've ever wanted is on the other side of fear.", "George Addair"),
+    ("Hardships often prepare ordinary people for an extraordinary destiny.", "C.S. Lewis"),
+]
+
+def get_random_quote(exclude=None):
+    quote = random.choice(QUOTES)
+    # try not to repeat the same quote twice in a row
+    if exclude and len(QUOTES) > 1:
+        while quote == exclude:
+            quote = random.choice(QUOTES)
+    return quote
+
+def main():
+    print("Random Quote Generator")
+    print("press enter for a new quote, type 'quit' to stop\n")
+
+    last_quote = None
+
+    while True:
+        user_input = input("Press Enter... ").strip().lower()
+
+        if user_input in ("quit", "q", "exit"):
+            print("stay inspired!")
+            break
+
+        quote, author = get_random_quote(exclude=last_quote)
+        last_quote = quote
+
+        print(f'\n"{quote}"')
+        print(f" — {author}\n")
+
+if __name__ == "__main__":
+    main()
